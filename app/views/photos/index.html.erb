@@ -1,0 +1,19 @@
+<html>
+  <head>
+  </head>
+
+  <body>
+    <% if @photos.any? %>
+      <a href='photos/new'>Upload a photo</a>
+      <% @photos.each do |photo| %>
+        <ul>
+          <h2><li><%= link_to photo.name, photo_path(photo) %> </li></h2>
+          <h3><%= link_to "Edit #{photo.name}", edit_photo_path(photo) %> </h3>
+          <h3><%= link_to "Delete #{photo.name}", photo_path(photo), method: :delete %> </h3>
+        </ul>
+      <% end %>
+    <% else %>
+      </p><a href='photos/new'>Upload your first photo</a> and start sharing</p>
+    <% end %>
+  </body>
+</html>
