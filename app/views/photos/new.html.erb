@@ -3,9 +3,10 @@
   </head>
 
   <body>
-    <%= form_for @photo do |f| %>
+    <%= form_for, html: {multipart: true} @photo do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
+      <%= f.file_field :image %>
       <%= f.label :description %>
       <%= f.text_field :description %>
       <%= f.submit %>
