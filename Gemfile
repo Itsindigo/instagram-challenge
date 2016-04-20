@@ -11,8 +11,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "paperclip", "~> 4.2"
-gem 'aws-sdk'
-
+gem 'aws-sdk', '< 2.0'
+gem "figaro"
 gem 'devise'
 gem 'omniauth-facebook'
 
