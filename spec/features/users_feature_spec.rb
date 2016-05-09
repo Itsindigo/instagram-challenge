@@ -35,4 +35,17 @@ feature "User can sign in and out" do
       expect(page).not_to have_link('Sign up')
     end
   end
+
+  scenario "a user should be able to sign up, signout and sign in again" do
+    visit('/users/sign_up')
+    fill_in('Email', with: 'test@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    click_button('Sign up')
+    click_link "Sign out"
+    fill_in('Email', with: 'test@example.com')
+    fill_in('Password', with: 'testtest')
+    click_button('Log in')
+    expect(page).to have_content("Sign out")
+  end
 end
