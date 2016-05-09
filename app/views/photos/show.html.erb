@@ -4,6 +4,7 @@
 
   <body>
     <p><%= @photo.name %></p>
+    <p><%= image_tag @photo.image.url(:medium) %></p>
     <p><%= @photo.description %></p>
   </body>
 </html>

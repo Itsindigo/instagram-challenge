@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 feature 'homepage' do
+
+  before do
+    user_sign_up
+  end
+
   context 'no photos have been added' do
     scenario 'should display a prompt to add a photo' do
       visit '/photos'
@@ -41,6 +46,15 @@ feature 'homepage' do
       click_link 'London'
       expect(page).to have_content 'London'
       expect(current_path).to eq "/photos/#{london.id}"
+    end
+
+    scenario 'a user should only be able to access their own photos' do
+      visit '/photos/new'
+      fill_in "Name", with: "belongs to 'test@example.com' "
+      click_button "Create Photo"
+      click_link 'Sign out'
+      alternate_sign_up
+      expect(page).not_to have_content("belongs to 'test@example.com'")
     end
   end
 

@@ -3,19 +3,22 @@
   </head>
 
   <body>
-    <% if @photos.any? %>
-      <a href='photos/new'>Upload a photo</a>
-      <% @photos.each do |photo| %>
-        <ul>
-          <li><h2><%= link_to photo.name, photo_path(photo) %> </h2>
-          <%= puts photo.image.url %>
-          <%= image_tag photo.image.url(:square) %>
-          <h3><%= link_to "Edit #{photo.name}", edit_photo_path(photo) %> </h3>
-          <h3><%= link_to "Delete #{photo.name}", photo_path(photo), method: :delete %> </h3></li>
-        </ul>
+    <% if user_signed_in? %>
+      <% if @photos.any? %>
+        <a href='photos/new'>Upload a photo</a>
+        <% @photos.each do |photo| %>
+          <ul>
+            <li><h2><%= link_to photo.name, photo_path(photo) %> </h2>
+            <%= image_tag photo.image.url(:square) %>
+            <h3><%= link_to "Edit #{photo.name}", edit_photo_path(photo) %> </h3>
+            <h3><%= link_to "Delete #{photo.name}", photo_path(photo), method: :delete %> </h3></li>
+          </ul>
+        <% end %>
+      <% else %>
+        </p><a href='photos/new'>Upload your first photo</a> and start sharing</p>
       <% end %>
     <% else %>
-      </p><a href='photos/new'>Upload your first photo</a> and start sharing</p>
+      <%= "Sign in to start uploading photos!" %>
     <% end %>
   </body>
 </html>
