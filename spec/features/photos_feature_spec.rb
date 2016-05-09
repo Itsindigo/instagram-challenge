@@ -24,6 +24,7 @@ feature 'homepage' do
     scenario 'display photos' do
       user_sign_up
       create_photo
+      expect(page).to have_css 'img'
       expect(page).to have_content("Photo name")
       expect(page).not_to have_content("Upload your first photo and start sharing")
     end
