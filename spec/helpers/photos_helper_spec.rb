@@ -1,12 +1,9 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the PhotosHelper. For example:
-#
-# describe PhotosHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
+def create_photo
+  visit '/'
+  click_link 'Upload'
+  fill_in 'Name', with: 'Photo name'
+  # attach_file 'photo[image]', Rails.root.join('spec','images','bbc-g.jpg')
+  click_button 'Create Photo'
+end

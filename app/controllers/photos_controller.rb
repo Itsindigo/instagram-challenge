@@ -1,7 +1,9 @@
 class PhotosController < ApplicationController
 
+  before_filter :authenticate
+
   def index
-    @photos = Photo.all
+    @photos = current_user.photos
   end
 
   def new
@@ -9,7 +11,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.create(photo_params)
+    current_user.photos.create(photo_params)
     redirect_to '/photos'
   end
 
