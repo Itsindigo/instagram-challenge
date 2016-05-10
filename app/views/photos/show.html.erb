@@ -1,10 +1,17 @@
 <html>
   <head>
   </head>
-
   <body>
     <p><%= @photo.name %></p>
     <p><%= image_tag @photo.image.url(:medium) %></p>
     <p><%= @photo.description %></p>
+    <% if @photo.comments.any? && user_signed_in? %>
+      <%= "Post a comment:" %>
+      <% @photo.comments.each do |comment| %>
+        <%= comment.comment_entry %>
+      <% end %>
+    <% else %>
+      <%= "Be the first to comment" %>
+    <% end %>
   </body>
 </html>

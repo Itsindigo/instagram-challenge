@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
 
+  def index
+    @comments = Comment.all
+  end
+
   def new
     @photo = Photo.find(params[:photo_id])
     @comment = Comment.new
@@ -13,5 +17,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+  end
+
+  def comment_params
+   params.require(:comment).permit(:comment_entry)
   end
 end
